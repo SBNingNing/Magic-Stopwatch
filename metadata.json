@@ -1,0 +1,5 @@
+{
+  "name": "Magic Stopwatch",
+  "description": "A stealth stopwatch app with a magic trick feature that displays a specific time when paused.",
+  "requestFramePermissions": []
+}
