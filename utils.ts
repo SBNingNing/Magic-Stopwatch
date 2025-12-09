@@ -34,13 +34,11 @@ export const getTrickTimeMs = (): number => {
 };
 
 // Helper for fixed time trick
-// Input comes from Numpad as total seconds (interpreted as Minutes:Seconds in numpad)
-// We need to remap this: Input Minutes -> Output Seconds, Input Seconds -> Output Centiseconds
-export const getFixedTimeMs = (totalSecondsFromNumpad: number): number => {
-  // Reconstruct the visual input from Numpad
-  const inputM = Math.floor(totalSecondsFromNumpad / 60);
-  const inputS = totalSecondsFromNumpad % 60;
-
-  // Map to Stopwatch logic: M -> S, S -> cs
-  return (inputM * 1000) + (inputS * 10);
+// Input comes from Numpad as two parts: minutes (left) and seconds (right)
+// Mapping: Input Left (Minutes) -> Stopwatch Seconds
+// Mapping: Input Right (Seconds) -> Stopwatch Centiseconds
+export const getFixedTimeMs = (time: TimeValue): number => {
+  // Map Input Minutes -> Seconds (x1000 ms)
+  // Map Input Seconds -> Centiseconds (x10 ms)
+  return (time.minutes * 1000) + (time.seconds * 10);
 };
